@@ -40,11 +40,21 @@
     "parserOptions": {
       "parser": "babel-eslint"
     },
-    "rules": {}
+    "rules": {
+      "quotes": 0
+    }
   },
   "browserslist": [
     "> 1%",
     "last 2 versions",
     "not dead"
-  ]
+  ],
+  "prettier": {
+    "tabWidth": 2,
+    "useTabs": false,
+    "singleQuote": true,
+    "trailingComma": "all",
+    "arrowParens": "always",
+    "endOfLine": "lf"
+  }
 }
