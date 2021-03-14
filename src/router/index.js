@@ -28,7 +28,12 @@ export const router = new VueRouter({
       component: LoginPage,
     },
     {
-      path: '/form',
+      path: '/register',
+      name: 'register',
+      component: LoginPage,
+    },
+    {
+      path: '/meetups/create',
       name: 'form',
       component: FormPage,
     },

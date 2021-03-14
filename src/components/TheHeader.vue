@@ -8,15 +8,29 @@
       </h1>
     </div>
     <nav>
-      <router-link to="/login">Вход</router-link>
-      <router-link to="/meetups">Митапы</router-link>
+      <router-link to="/meetups">← Вернуться к списку</router-link>
+      <router-link to="/meetups?participation=organizing"
+        >Мои митапы</router-link
+      >
+      <router-link to="/meetups/create">Создать митап</router-link>
+      <router-link to="/login">Войти</router-link>
+      <router-link to="/register">Зарегистрироваться</router-link>
+      <a @click.prevent="leave">Выйти</a>
       <router-link to="/form">Создать митап</router-link>
     </nav>
   </header>
 </template>
 
 <script>
-export default { name: 'TheHeader' };
+export default {
+  name: 'TheHeader',
+
+  methods: {
+    leave() {
+      alert('leaving...');
+    },
+  },
+};
 </script>
 
 <style scoped>
@@ -61,6 +75,7 @@ export default { name: 'TheHeader' };
 
 .header nav a:hover {
   color: var(--blue);
+  cursor: pointer;
 }
 
 .header nav a:before {
