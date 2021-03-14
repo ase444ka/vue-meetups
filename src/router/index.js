@@ -8,15 +8,15 @@ Vue.use(VueRouter);
 
 export const router = new VueRouter({
   mode: 'history',
-  
-  base: '/04-SPA/04-Layouts',
+
+  base: process.env.BASE_URL,
   routes: [
     {
       path: '/',
       name: 'index',
       component: MeetupsPage,
     },
-    
+
     {
       path: '/meetups',
       name: 'meetups',
