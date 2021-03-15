@@ -1,6 +1,5 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-import MeetupsPage from '../views/MeetupsPage';
 import LoginPage from '../views/LoginPage';
 import FormPage from '../views/FormPage';
 
@@ -14,13 +13,13 @@ export const router = new VueRouter({
     {
       path: '/',
       name: 'index',
-      component: MeetupsPage,
+      component: () => import('../views/MeetupsPage'),
     },
 
     {
       path: '/meetups',
       name: 'meetups',
-      component: MeetupsPage,
+      component: () => import('../views/MeetupsPage'),
     },
     {
       path: '/login',
