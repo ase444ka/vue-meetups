@@ -36,5 +36,11 @@ export const router = new VueRouter({
       name: 'form',
       component: FormPage,
     },
+    {
+      path: '/meetups/:meetupId',
+      name: 'meetup',
+      props: true,
+      component: () => import('../views/MeetupPage'),
+    },
   ],
 });
