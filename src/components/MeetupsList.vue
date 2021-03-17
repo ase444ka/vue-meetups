@@ -16,7 +16,6 @@
       />
     </list-view-card>
   </list-view>
-  <!-- :to="{ name: 'meetup', params: { meetupId: meetup.id } }" -->
 </template>
 <script>
 import ListView from './ListView';

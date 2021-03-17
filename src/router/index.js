@@ -1,7 +1,5 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-import LoginPage from '../views/LoginPage';
-import FormPage from '../views/FormPage';
 
 Vue.use(VueRouter);
 
@@ -24,23 +22,26 @@ export const router = new VueRouter({
     {
       path: '/login',
       name: 'login',
-      component: LoginPage,
+      component: () => import('../views/LoginPage'),
     },
     {
       path: '/register',
       name: 'register',
-      component: LoginPage,
+      component: () => import('../views/LoginPage'),
     },
     {
       path: '/meetups/create',
       name: 'form',
-      component: FormPage,
+      component: () => import('../views/FormPage'),
     },
     {
       path: '/meetups/:meetupId',
       name: 'meetup',
       props: true,
       component: () => import('../views/MeetupPage'),
+      meta: {
+        showReturnToMeetups: true,
+      },
     },
   ],
 });

@@ -8,7 +8,11 @@
       </h1>
     </div>
     <nav>
-      <router-link to="/meetups">← Вернуться к списку</router-link>
+      <router-link
+        v-if="$route.matched.some((route) => route.meta.showReturnToMeetups)"
+        :to="{ name: 'meetups' }"
+        >&larr; Вернуться к списку</router-link
+      >
       <router-link to="/meetups?participation=organizing"
         >Мои митапы</router-link
       >
@@ -24,6 +28,13 @@
 <script>
 export default {
   name: 'TheHeader',
+
+  props: {
+    showReturnToMeetups: {
+      type: Boolean,
+      default: false,
+    },
+  },
 
   methods: {
     leave() {
