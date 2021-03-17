@@ -6,10 +6,7 @@
     class="meetups-list__item"
   >
     <div class="meetups-list__col">
-      <div
-        class="meetups-list__cover"
-        :style="cover ? `--bg-url: url('${cover}')` : ''"
-      >
+      <div class="meetups-list__cover" :style="coverStyle">
         <h5>{{ title }}</h5>
       </div>
     </div>
@@ -42,6 +39,14 @@ export default {
     tag: {
       default: 'div',
     },
+  },
+
+  data() {
+    return {
+      coverStyle: this.cover
+        ? `--bg-url: url('${this.cover}')`
+        : `--bg-url: url(${process.env.BASE_URL}images/undraw_conference_speaker_6nt7.svg)`,
+    };
   },
 };
 </script>

@@ -1,7 +1,7 @@
 <template>
   <div class="meetup-agenda__item">
     <div class="meetup-agenda__item-col">
-      <app-icon  class="info-list__icon" :alt="icon" :icon="icon" v-if="icon" />
+      <app-icon class="info-list__icon" :alt="icon" :icon="icon" v-if="icon" />
     </div>
     <div class="meetup-agenda__item-col" v-if="period">{{ period }}</div>
     <div class="meetup-agenda__item-col">
@@ -20,7 +20,7 @@
 
 <script>
 import { agendaItemIcons, agendaItemTitles } from '../data.js';
-import AppIcon from './AppIcon'
+import AppIcon from './AppIcon';
 export default {
   name: 'MeetupAgendaItem',
 
@@ -36,7 +36,7 @@ export default {
   },
   computed: {
     icon() {
-      return agendaItemIcons[this.agendaItem.type]
+      return agendaItemIcons[this.agendaItem.type];
     },
 
     //установка названия по умолчанию если нужно
