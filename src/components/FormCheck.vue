@@ -42,7 +42,7 @@ export default {
     },
   },
 
-  wath: {
+  watch: {
     options: {
       immediate: true,
       handler(value) {
