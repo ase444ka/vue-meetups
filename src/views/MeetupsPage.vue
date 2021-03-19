@@ -11,21 +11,17 @@
 
       <div class="filters-panel__col">
         <div class="form-group form-group_inline">
-          <div class="input-group input-group_icon input-group_icon-left">
-            <img
-              class="icon"
-              alt="icon"
-              src="../assets/icons/icon-search.svg"
-            />
-            <input
-              ref="input-element"
-              id="filters-panel__search"
-              class="form-control form-control_rounded form-control_sm"
-              type="text"
-              v-model="filter.search"
-              placeholder="Поиск"
-            />
-          </div>
+          <app-input
+            rounded
+            ref="input-element"
+            id="filters-panel__search"
+            v-model="filter.search"
+            placeholder="Поиск"
+          >
+            <template #left-icon>
+              <app-icon icon="search" />
+            </template>
+          </app-input>
         </div>
         <div class="form-group form-group_inline">
           <page-tabs :selected.sync="view" />
@@ -46,11 +42,20 @@ import MeetupsList from '../components/MeetupsList';
 import MeetupsCalendar from '../components/MeetupsCalendar';
 import FormCheck from '../components/FormCheck';
 import PageTabs from '../components/PageTabs';
+import AppIcon from '../components/ui/AppIcon';
+import AppInput from '../components/ui/AppInput';
 import { fetchMeetups } from '../data.js';
 
 export default {
   name: 'MeetupsPage',
-  components: { MeetupsList, FormCheck, PageTabs, MeetupsCalendar },
+  components: {
+    MeetupsList,
+    FormCheck,
+    PageTabs,
+    MeetupsCalendar,
+    AppInput,
+    AppIcon,
+  },
 
   dateFilterOptions: [
     { text: 'Все', value: 'all' },

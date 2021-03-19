@@ -20,7 +20,7 @@ export default {
   name: 'AppInput',
 
   inheritAttrs: false,
-  
+
   props: {
     value: {
       type: String,

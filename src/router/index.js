@@ -42,6 +42,10 @@ export const router = new VueRouter({
       meta: {
         showReturnToMeetups: true,
       },
+      beforeEnter(to, from, next) {
+        if (typeof to.params.meetupId === 'number') next();
+        else next(false);
+      },
     },
   ],
 });
