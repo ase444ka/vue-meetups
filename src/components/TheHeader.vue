@@ -13,8 +13,11 @@
         :to="{ name: 'meetups' }"
         >&larr; Вернуться к списку</router-link
       >
-      <router-link to="/meetups?participation=organizing"
+      <router-link to="/meetups?participation=attending"
         >Мои митапы</router-link
+      >
+      <router-link to="/meetups?participation=organizing"
+      >Организуемые митапы</router-link
       >
       <router-link to="/meetups/create">Создать митап</router-link>
       <router-link to="/login">Войти</router-link>
