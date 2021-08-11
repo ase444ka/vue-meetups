@@ -13,9 +13,7 @@
 
         <div class="meetup__aside" v-if="meetup">
           <MeetupInfo
-            :organizer="meetup.organizer"
-            :place="meetup.place"
-            :date="date"
+                  v-bind.sync = "meetup"
           />
         </div>
       </div>

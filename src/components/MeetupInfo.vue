@@ -20,7 +20,7 @@
       </button>
       <button class="button button_secondary" v-else>Отменить участие</button>
       <router-link :to="meetupLink" tag="button" class="button button_primary"
-        >Редактировать</router-link
+      >Редактировать</router-link
       >
       <button class="button button_danger">Удалить</button>
     </div>
@@ -67,7 +67,7 @@ export default {
     },
 
     dateOnlyString() {
-      return this.date.toISOString().split('T')[0];
+      return new Date(this.date).toISOString().split('T')[0];
     },
 
     meetupLink() {
