@@ -10,9 +10,7 @@
       :badge-success="meetup.badgeSuccess"
     >
       <meetup-info
-        :date="meetup.date"
-        :place="meetup.place"
-        :organizer="meetup.organizer"
+        v-bind.sync = "meetup"
       />
     </list-view-card>
   </list-view>
