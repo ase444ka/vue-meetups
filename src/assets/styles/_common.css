@@ -68,6 +68,10 @@ ul {
   margin: 0 0 32px;
 }
 
+.pre-line {
+  white-space: pre-line;
+}
+
 @media all and (max-width: 992px) {
   .container {
     padding: 0 16px;
