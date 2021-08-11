@@ -130,18 +130,7 @@ export default {
   white-space: pre-wrap;
 }
 
-.meetup__aside {
-  margin: 40px 0;
-}
 
-.meetup__aside-buttons {
-  padding: 0 0 0 34px;
-  margin-top: 16px;
-}
-
-.meetup__aside-buttons > .button {
-  margin: 0 10px 10px 0;
-}
 
 @media all and (min-width: 992px) {
   .meetup {

@@ -1,18 +1,30 @@
 <template>
-  <ul class="info-list">
-    <li>
-      <app-icon icon="user" class="info-list__icon" />
-      {{ organizer }}
-    </li>
-    <li>
-      <app-icon icon="map" class="info-list__icon" />
-      {{ place }}
-    </li>
-    <li>
-      <app-icon icon="cal-lg" class="info-list__icon" />
-      <time :datetime="dateOnlyString">{{ localDate }}</time>
-    </li>
-  </ul>
+  <div>
+    <ul class="info-list">
+      <li>
+        <app-icon icon="user" class="info-list__icon" />
+        {{ organizer }}
+      </li>
+      <li>
+        <app-icon icon="map" class="info-list__icon" />
+        {{ place }}
+      </li>
+      <li>
+        <app-icon icon="cal-lg" class="info-list__icon" />
+        <time :datetime="dateOnlyString">{{ localDate }}</time>
+      </li>
+    </ul>
+    <div class="meetup__aside-buttons">
+      <button class="button button_primary" v-if="rand">
+        Участвовать
+      </button>
+      <button class="button button_secondary" v-else>Отменить участие</button>
+      <router-link :to="meetupLink" tag="button" class="button button_primary"
+        >Редактировать</router-link
+      >
+      <button class="button button_danger">Удалить</button>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -21,6 +33,12 @@ import { localDate } from '@/scripts';
 
 export default {
   name: 'MeetupInfo',
+
+  data() {
+    return {
+      rand: Math.round(Math.random()) % 2,
+    };
+  },
 
   components: { AppIcon },
 
@@ -37,15 +55,23 @@ export default {
       type: Date,
       required: true,
     },
+    id: {
+      type: Number,
+      required: true,
+    },
   },
 
   computed: {
     localDate() {
-      return localDate(this.date)
+      return localDate(this.date);
     },
 
     dateOnlyString() {
       return this.date.toISOString().split('T')[0];
+    },
+
+    meetupLink() {
+      return `/meetups/${this.id}/edit`;
     },
   },
 };
@@ -74,5 +100,18 @@ export default {
   position: absolute;
   left: 0;
   top: 0;
+}
+.meetup__aside {
+  margin: 40px 0;
+}
+
+.meetup__aside-buttons {
+  padding: 0 0 0 34px;
+  margin-top: 16px;
+}
+
+.meetup__aside-buttons > .button {
+  margin: 0 10px 10px 0;
+  width: 100%;
 }
 </style>
