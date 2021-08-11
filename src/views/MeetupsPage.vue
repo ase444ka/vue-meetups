@@ -3,7 +3,7 @@
     <div class="filters-panel">
       <div class="filters-panel__col">
         <form-check
-          v-model="filter.date"
+          v-model="query.date"
           :options="$options.dateFilterOptions"
           name="date"
         />
@@ -15,7 +15,7 @@
             rounded
             ref="input-element"
             id="filters-panel__search"
-            v-model="filter.search"
+            v-model="query.search"
             placeholder="Поиск"
           >
             <template #left-icon>
@@ -24,27 +24,41 @@
           </app-input>
         </div>
         <div class="form-group form-group_inline">
-          <page-tabs :selected.sync="view" />
+          <page-tabs :selected.sync="query.view" />
         </div>
       </div>
     </div>
 
-    <template v-if="meetups && meetups.length">
-      <meetups-list v-if="meetups && view === 'list'" :meetups="meetups" />
-      <meetups-calendar v-else-if="view === 'calendar'" :meetups="meetups" />
+    <template v-if="filteredMeetups && filteredMeetups.length">
+      <meetups-list
+        v-if="meetups && query.view === 'list'"
+        :meetups="filteredMeetups"
+      />
+      <meetups-calendar
+        v-else-if="query.view === 'calendar'"
+        :meetups="filteredMeetups"
+      />
     </template>
     <div v-else>Митапов по заданным условиям не найдено...</div>
   </div>
 </template>
 
 <script>
-import MeetupsList from '../components/MeetupsList';
-import MeetupsCalendar from '../components/MeetupsCalendar';
-import FormCheck from '../components/FormCheck';
-import PageTabs from '../components/PageTabs';
-import AppIcon from '../components/ui/AppIcon';
-import AppInput from '../components/ui/AppInput';
-import { fetchMeetups } from '../data.js';
+import MeetupsList from '@/components/MeetupsList';
+import MeetupsCalendar from '@/components/MeetupsCalendar';
+import FormCheck from '@/components/FormCheck';
+import PageTabs from '@/components/PageTabs';
+import AppIcon from '@/components/ui/AppIcon';
+import AppInput from '@/components/ui/AppInput';
+import { fetchMeetups } from '@/data.js';
+import { localDate } from '@/scripts';
+
+const defaultQueryParams = {
+  view: 'list',
+  date: `all`,
+  participation: `all`,
+  search: ``,
+};
 
 export default {
   name: 'MeetupsPage',
@@ -66,17 +80,52 @@ export default {
   data() {
     return {
       meetups: null,
-      filter: {
-        date: 'all',
-        participation: 'all',
-        search: '',
-      },
-      view: 'list',
+      query: { ...defaultQueryParams },
     };
+  },
+
+  computed: {
+    filteredMeetups() {
+      if (!this.meetups) return null;
+      return this.meetups.filter(({ date, organizer, place, title }) =>
+        [localDate(date), organizer, place, title].some((val) =>
+          typeof val === 'string'
+            ? new RegExp(this.query.search, 'i').test(val)
+            : false,
+        ),
+      );
+    },
   },
 
   async mounted() {
     this.meetups = await fetchMeetups();
+  },
+
+  watch: {
+    $route: {
+      immediate: true,
+      deep: true,
+      handler(value) {
+        this.query = Object.assign({}, defaultQueryParams, value.query);
+      },
+    },
+    query: {
+      deep: true,
+      handler(value) {
+        let route = Object.assign({}, { query: Object.assign({}, value) });
+
+        for (let key in route.query) {
+          if (route.query[key] === defaultQueryParams[key]) {
+            delete route.query[key];
+          }
+        }
+        this.$router.push(route).catch((err) => {
+          if (err.name !== 'NavigationDuplicated') {
+            throw err;
+          }
+        });
+      },
+    },
   },
 };
 </script>

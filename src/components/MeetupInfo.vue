@@ -17,6 +17,7 @@
 
 <script>
 import AppIcon from './AppIcon';
+import { localDate } from '@/scripts';
 
 export default {
   name: 'MeetupInfo',
@@ -40,11 +41,7 @@ export default {
 
   computed: {
     localDate() {
-      return new Date(this.date).toLocaleString(navigator.language, {
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric',
-      });
+      return localDate(this.date)
     },
 
     dateOnlyString() {
