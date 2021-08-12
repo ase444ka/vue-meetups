@@ -177,7 +177,7 @@ export default {
   top: 15px;
   right: 16px;
   transform: none;
-  background: url('../assets/icons/icon-chevron-down.svg') no-repeat;
+  background: url('../../assets/icons/icon-chevron-down.svg') no-repeat;
   background-size: cover;
   display: block;
   width: 24px;
