@@ -55,6 +55,7 @@ export const router = new VueRouter({
     {
       path: '/meetups/:meetupId/edit',
       name: 'editMeetup',
+      props: true,
       component: () => import('@/views/FormPage')
     },
     {

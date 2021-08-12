@@ -19,16 +19,15 @@
         Участвовать
       </button>
       <button class="button button_secondary" v-else>Отменить участие</button>
-      <router-link :to="meetupLink" tag="button" class="button button_primary"
-      >Редактировать</router-link
-      >
+      <router-link :to="{ name: 'editMeetup', params: { meetupId: id } }" tag="button" class="button button_primary"
+      >Редактировать</router-link>
       <button class="button button_danger">Удалить</button>
     </div>
   </div>
 </template>
 
 <script>
-import AppIcon from './AppIcon';
+  import AppIcon from '@/components/ui/AppIcon';
 import { localDate } from '@/scripts';
 
 export default {
@@ -52,7 +51,7 @@ export default {
       required: true,
     },
     date: {
-      type: Date,
+      type: [Number, Date],
       required: true,
     },
     id: {

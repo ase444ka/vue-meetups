@@ -20,7 +20,7 @@
 
 <script>
 import { agendaItemIcons, agendaItemTitles } from '../data.js';
-import AppIcon from './AppIcon';
+import AppIcon from '@/components/ui/AppIcon';
 export default {
   name: 'MeetupAgendaItem',
 
